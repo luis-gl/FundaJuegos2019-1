@@ -128,7 +128,7 @@ void MainGame::procesInput() {
 void MainGame::handleInput()
 {
 	const float CAMERA_SPEED = 0.02;
-	const float SCALE_SPEED = 0.001f;
+	const float SCALE_SPEED = 0.01f;
 	/*if (inputManager.isKeyPressed(SDLK_w)) {
 		_camera.setPosition(_camera.getPosition() 
 					+glm::vec2(0.0, CAMERA_SPEED));

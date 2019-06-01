@@ -65,7 +65,10 @@ void Level::parseLevel() {
 				playerPosition.y = i* TILE_WIDTH;
 				break;
 			case 'Z':
-				levelData[i][j] = '.';
+				spritebatch.draw(destRect, uvRect,
+					ResourceManager::getTexture("Textures/circle.png").id,
+					0.0f, color
+				);
 				break;
 			case '.':
 				break;
