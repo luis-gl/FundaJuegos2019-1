@@ -46,6 +46,12 @@ void MainGame::initLevel() {
 		humans.back()->init(10.0f, pos);
 
 	}
+	for (int i = 0; i < levels[currentLevel]->getZombiesPosition().size(); i++)
+	{
+		zombies.push_back(new Zombie());
+		glm::vec2 zPos = levels[currentLevel]->getZombiesPosition()[i];
+		zombies.back()->init(zPos);
+	}
 }
 
 void MainGame::initShaders() {
@@ -88,6 +94,10 @@ void MainGame::draw() {
 	for (size_t i = 0; i < humans.size(); i++)
 	{
 		humans[i]->draw(spritebatch);
+	}
+	for (size_t i = 0; i < zombies.size(); i++)
+	{
+		zombies[i]->draw(spritebatch);
 	}
 	spritebatch.end();
 	spritebatch.renderBatch();

@@ -64,11 +64,8 @@ void Level::parseLevel() {
 				playerPosition.x = j* TILE_WIDTH;
 				playerPosition.y = i* TILE_WIDTH;
 				break;
-			case 'Z':
-				spritebatch.draw(destRect, uvRect,
-					ResourceManager::getTexture("Textures/circle.png").id,
-					0.0f, color
-				);
+			case 'Z':	
+				zombiesPosition.push_back(glm::vec2(j * TILE_WIDTH, i * TILE_WIDTH));
 				break;
 			case '.':
 				break;

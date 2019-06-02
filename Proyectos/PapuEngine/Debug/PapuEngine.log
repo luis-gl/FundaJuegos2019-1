@@ -1,12 +1,2 @@
-﻿  Level.cpp
-c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\level.cpp(64): warning C4244: '=': conversión de 'size_t' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
-c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\level.cpp(65): warning C4244: '=': conversión de 'size_t' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
+﻿  Zombie.cpp
   PapuEngine.vcxproj -> C:\Users\Luis\Documents\GitHub\FundaJuegos2019-1\Proyectos\Debug\PapuEngine.exe
