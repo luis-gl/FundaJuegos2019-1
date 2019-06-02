@@ -135,6 +135,7 @@
     <ClCompile Include="ScreenList.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteBatch.cpp" />
+    <ClCompile Include="SpriteGen.cpp" />
     <ClCompile Include="TextureCache.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Zombie.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="ScreenList.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteBatch.h" />
+    <ClInclude Include="SpriteGen.h" />
     <ClInclude Include="TextureCache.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window.h" />

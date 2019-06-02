@@ -89,6 +89,10 @@ void MainGame::draw() {
 	{
 		humans[i]->draw(spritebatch);
 	}
+	for (size_t i = 0; i < spritesGen.size(); i++)
+	{
+		spritesGen[i]->draw(spritebatch);
+	}
 	spritebatch.end();
 	spritebatch.renderBatch();
 
@@ -128,7 +132,15 @@ void MainGame::procesInput() {
 void MainGame::handleInput()
 {
 	const float CAMERA_SPEED = 0.02;
-	const float SCALE_SPEED = 0.001f;
+	const float SCALE_SPEED = 0.01f;
+
+	std::mt19937 randomEngine(time(nullptr));
+	std::uniform_int_distribution<int> randomX(
+		1, levels[currentLevel]->getWidth() - 2
+	);
+	std::uniform_int_distribution<int> randomY(
+		1, levels[currentLevel]->getHeight() - 2
+	);
 	/*if (inputManager.isKeyPressed(SDLK_w)) {
 		_camera.setPosition(_camera.getPosition() 
 					+glm::vec2(0.0, CAMERA_SPEED));
@@ -136,15 +148,35 @@ void MainGame::handleInput()
 	if (inputManager.isKeyPressed(SDLK_s)) {
 		_camera.setPosition(_camera.getPosition() 
 				- glm::vec2(0.0, CAMERA_SPEED));
-	}
-	if (inputManager.isKeyPressed(SDLK_a)) {
-		_camera.setPosition(_camera.getPosition() 
-				- glm::vec2(CAMERA_SPEED, 0.0));
-	}
-	if (inputManager.isKeyPressed(SDLK_d)) {
-		_camera.setPosition(_camera.getPosition() 
-				+ glm::vec2(CAMERA_SPEED, 0.0));
 	}*/
+	if (inputManager.isKeyPressed(SDLK_a))
+	{
+		spritesGen.push_back(new SpriteGen());
+		glm::vec2 pos(randomX(randomEngine)*TILE_WIDTH,
+			randomY(randomEngine)*TILE_WIDTH);
+		spritesGen.back()->init(pos, 'A');
+	}
+	if (inputManager.isKeyPressed(SDLK_b))
+	{
+		spritesGen.push_back(new SpriteGen());
+		glm::vec2 pos(randomX(randomEngine)*TILE_WIDTH,
+			randomY(randomEngine)*TILE_WIDTH);
+		spritesGen.back()->init(pos, 'B');
+	}
+	if (inputManager.isKeyPressed(SDLK_c))
+	{
+		spritesGen.push_back(new SpriteGen());
+		glm::vec2 pos(randomX(randomEngine)*TILE_WIDTH,
+			randomY(randomEngine)*TILE_WIDTH);
+		spritesGen.back()->init(pos, 'C');
+	}
+	if (inputManager.isKeyPressed(SDLK_d))
+	{
+		spritesGen.push_back(new SpriteGen());
+		glm::vec2 pos(randomX(randomEngine)*TILE_WIDTH,
+			randomY(randomEngine)*TILE_WIDTH);
+		spritesGen.back()->init(pos, 'D');
+	}
 	if (inputManager.isKeyPressed(SDLK_q)) {
 		_camera.setScale(_camera.getScale() + SCALE_SPEED);
 	}

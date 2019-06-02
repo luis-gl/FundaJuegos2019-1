@@ -27,7 +27,7 @@ void Player::update(const std::vector<std::string>& leveldata,
 	std::vector<Zombie*>& zombies) {
 
 	
-	if (inputmanager->isKeyPressed(SDLK_w)) {
+	/*if (inputmanager->isKeyPressed(SDLK_w)) {
 		position.y += speed;
 	}
 	if (inputmanager->isKeyPressed(SDLK_s)) {
@@ -38,7 +38,7 @@ void Player::update(const std::vector<std::string>& leveldata,
 	}
 	if (inputmanager->isKeyPressed(SDLK_d)) {
 		position.x += speed;
-	}
+	}*/
 	collideWithLevel(leveldata);
 
 }
