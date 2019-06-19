@@ -2,16 +2,16 @@
 #include <SDL\SDL.h>
 #include <GL\glew.h>
 #include "GLS_Program.h"
-#include "Sprite.h"
 #include "Window.h"
 #include "Camera2D.h"
 #include <vector>
+#include "SpriteBacth.h"
 #include "InputManager.h"
-#include "SpriteBatch.h"
+#include "Bullet.h"
 #include "Level.h"
 #include "Player.h"
-#include "Zombie.h"
 #include "Human.h"
+#include "Zombie.h"
 
 enum class GameState
 {
@@ -27,20 +27,19 @@ private:
 	float _time;
 	Window _window;
 	void init();
-	Player* player;
 	void procesInput();
-	void handleInput();
 	GLS_Program _program;
-	vector<Sprite*> _sprites;
 	Camera2D _camera;
-	SpriteBatch spritebatch;
-	InputManager inputManager;
-	vector<Level*> levels;
-	vector<Zombie*> zombies;
-	vector<Human*> humans;
-	void updateElements();
-	int currentLevel;
+	SpriteBacth _spriteBacth;
+	InputManager _inputManager;
+	vector<Bullet> _bullets;
+	vector<Level*> _levels;
+	vector<Zombie*> _zombies;
+	vector<Human*>  _humans;
+	Player* _player;
+	int _currenLevel;
 	void initLevel();
+	void updateAgents();
 	
 public:
 	MainGame();

@@ -8,35 +8,32 @@ Human::Human()
 {
 }
 
-void Human::init(float _speed,glm::vec2 _position) {
-	speed = _speed;
-	position = _position;
-	color.r = 185;
-	color.g = 0;
-	color.b = 0;
-	color.a = 255;
-
+void Human::init(float speed,glm::vec2 position) {
+	_speed = speed;
+	color.set(185, 0, 0, 255);
+	_position = position;
 	static std::mt19937 randomEngine(time(nullptr));
-	static std::uniform_real_distribution<float>randDir(-1.0f, 1.0f);
-	direction = glm::vec2(randDir(randomEngine), randDir(randomEngine));
-	if (direction.length() == 0) {
-		direction = glm::vec2(1.0f, 1.0f);
+	static std::uniform_real_distribution<float>ranDir(-1.0f, 1.0f);
+
+	_direction = glm::vec2(ranDir(randomEngine), ranDir(randomEngine));
+	if (_direction.length() == 0) {
+		_direction = glm::vec2(1.0f, 1.0f);
 	}
-	direction = glm::vec2(direction);
+	_direction = glm::vec2(_direction);
 }
 
-void Human::update(const std::vector<std::string>& leveldata,
-	std::vector<Human*> & humans,
+void Human::update(const std::vector<std::string>& levelData,
+	std::vector<Human*>& humans,
 	std::vector<Zombie*>& zombies) {
 	static std::mt19937 randomEngine(time(nullptr));
-	static std::uniform_real_distribution<float>
-								randRotate(-40.0f, 40.0f);
-	position += direction* speed;
-	if (collideWithLevel(leveldata)) {
-		direction = 
-			glm::rotate(direction, randRotate(randomEngine));
+	static std::uniform_real_distribution<float>ranRotate(-40.0f, 40.0f);
+	_position += _direction*_speed;
+	if (collideWithLevel(levelData)) {
+		_direction = 
+			glm::rotate(_direction, ranRotate(randomEngine));
 	}
 }
+
 
 Human::~Human()
 {

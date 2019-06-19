@@ -13,6 +13,9 @@ void Window::swapBuffer() {
 int Window::create(string windowName, int screenWidth, int screenHeight, unsigned int currentFlags) {
 	Uint32 flags = SDL_WINDOW_OPENGL;
 
+	_screenWidth = screenWidth;
+	_screenHeight = screenHeight;
+
 	if (currentFlags & INVISBLE) {
 		flags |= SDL_WINDOW_HIDDEN;
 	}
@@ -36,6 +39,7 @@ int Window::create(string windowName, int screenWidth, int screenHeight, unsigne
 	
 	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 	SDL_GL_SetSwapInterval(0);
+
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 

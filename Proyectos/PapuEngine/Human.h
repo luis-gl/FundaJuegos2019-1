@@ -1,17 +1,17 @@
 #pragma once
 #include "Agent.h"
+
 class Human : public Agent
 {
-private:
-	glm::vec2 direction;
-		
-public:
-	void init(float _speed, glm::vec2 _position);
-	Human();
-	~Human();
+protected:
+	glm::vec2 _direction;
 
-	void update(const std::vector<std::string>& leveldata,
-		std::vector<Human*> & humans,
+public:
+	Human();
+	void init(float speed, glm::vec2 position);
+	void update(const std::vector<std::string>& levelData,
+		std::vector<Human*>& humans,
 		std::vector<Zombie*>& zombies);
+	~Human();
 };
 

@@ -24,4 +24,3 @@ public:
 	int getScreenHeight() { return _screenHeight; };
 	int create(string windowName, int screenWidth, int screenHeight, unsigned int currentFlags);
 };
-

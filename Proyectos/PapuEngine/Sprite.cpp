@@ -43,11 +43,11 @@ void Sprite::init(float x, float y, int width,
 
 	for (int i = 0; i < 6; i++)
 	{
-		vertexData[i].setColor(255, 0, 0, 255);
+		vertexData[i].setColorRGBA(255, 0, 0, 255);
 	}
 
-	vertexData[1].setColor(0, 0, 255, 255);
-	vertexData[4].setColor(0, 255, 0, 255);
+	vertexData[1].setColorRGBA(0, 0, 255, 255);
+	vertexData[4].setColorRGBA(0, 255, 0, 255);
 
 	glBindBuffer(GL_ARRAY_BUFFER, _vobID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), 
@@ -59,22 +59,27 @@ void Sprite::draw()
 {
 	glBindTexture(GL_TEXTURE_2D, _texture.id);
 	glBindBuffer(GL_ARRAY_BUFFER, _vobID);
-	glEnableVertexAttribArray(0);
+	/*glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
 	//primer atributo position
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), 
 							(void*)offsetof(Vertex,position));
 
-	//segundo atributo color
+	//segundo atributo ColorRGBA
 	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex),
-		(void*)offsetof(Vertex, color));
+		(void*)offsetof(Vertex, ColorRGBA));
 
 	//tercer atributo UV
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex),
 		(void*)offsetof(Vertex, uv));
-
+		*/
 
 	glDrawArrays(GL_TRIANGLES,0,6);
 	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
+
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 

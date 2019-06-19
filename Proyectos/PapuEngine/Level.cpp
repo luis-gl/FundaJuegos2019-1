@@ -4,68 +4,69 @@
 #include "Error.h"
 
 
-Level::Level(const string &fileName)
+Level::Level(const std::string& fileName)
 {
-	ifstream file;
+	std::ifstream file;
 	file.open(fileName);
 	if (file.fail()) {
-		fatalError("no abre el archivo " + fileName);
+		fatalError("failed to opem " + fileName);
 	}
 
-	string tmp;
-	file >> tmp >> numHumans;
+	std::string tmp;
 
-	getline(file, tmp);
-	while (getline(file, tmp)) {
-		levelData.push_back(tmp);
+	file >> tmp >> _numHumans;
+	std::getline(file, tmp);
+	while (std::getline(file, tmp)) {
+		_levelData.push_back(tmp);
 	}
 	parseLevel();
+
 }
 
+void Level::draw() {
+	_spriteBatch.renderBatch();
+}
+
+
 void Level::parseLevel() {
-	spritebatch.init();
-	spritebatch.begin();
-	glm::uvec4 uvRect(0.0f, 0.0f, 1.0f, 1.0f);
+	_spriteBatch.init();
+	_spriteBatch.begin();
+
+	glm::vec4 uvRect(0.0f, 0.0f, 1.0f, 1.0f);
 	Color color;
-	color.r = 255;
-	color.g = 255;
-	color.b = 255;
-	color.a = 255;
-	for (size_t i = 0; i < levelData.size(); i++)
+	color.set(255, 255, 255, 255);
+	for (int y = 0; y < _levelData.size(); y++)
 	{
-		for (size_t j = 0; j < levelData[i].size(); j++)
+		for (int x = 0; x < _levelData[y].size(); x++)
 		{
-			char tile = levelData[i][j];
-			glm::vec4 destRect
-				(j*TILE_WIDTH, i*TILE_WIDTH, TILE_WIDTH, TILE_WIDTH);
+			char tile = _levelData[y][x];
+			glm::vec4 destRect(x*TILE_WIDTH, y*TILE_WIDTH,
+							   TILE_WIDTH, TILE_WIDTH);
 			switch (tile)
 			{
 			case 'R':
 			case 'B':
-				spritebatch.draw(destRect, uvRect,
-					ResourceManager::getTexture("Textures/red_bricks.png").id,
-					0.0f, color
-				);
+				_spriteBatch.draw(destRect, uvRect, 
+					ResourceManager::getTexture("Textures/red_bricks.png").id
+					,0.0f,color);
 				break;
 			case 'G':
-				spritebatch.draw(destRect, uvRect,
-					ResourceManager::getTexture("Textures/red_bricks.png").id,
-					0.0f, color
-				);
+				_spriteBatch.draw(destRect, uvRect,
+					ResourceManager::getTexture("Textures/glass.png").id
+					, 0.0f, color);
 				break;
-			case 'L':
-				spritebatch.draw(destRect, uvRect,
-					ResourceManager::getTexture("Textures/red_bricks.png").id,
-					0.0f, color
-				);
+			case 'L':_spriteBatch.draw(destRect, uvRect,
+				ResourceManager::getTexture("Textures/light_bricks.png").id
+				, 0.0f, color);				
 				break;
 			case '@':
-				levelData[i][j] = '.';
-				playerPosition.x = j* TILE_WIDTH;
-				playerPosition.y = i* TILE_WIDTH;
+				_levelData[y][x] = '.';
+				_playerPosition.x = x*TILE_WIDTH;
+				_playerPosition.y = y*TILE_WIDTH;
 				break;
 			case 'Z':
-				levelData[i][j] = '.';
+				_levelData[y][x] = '.';
+				_zombiesPosition.emplace_back(x*TILE_WIDTH, y*TILE_WIDTH);
 				break;
 			case '.':
 				break;
@@ -74,11 +75,7 @@ void Level::parseLevel() {
 			}
 		}
 	}
-	spritebatch.end();
-}
-
-void Level::draw() {
-	spritebatch.renderBatch();
+	_spriteBatch.end();
 }
 
 

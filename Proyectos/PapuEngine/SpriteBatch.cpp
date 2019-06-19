@@ -78,8 +78,8 @@ void SpriteBatch::renderBatch() {
 	glBindVertexArray(0);
 }
 
-void SpriteBatch::draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& ColorRGBA) {
-	glyphs.emplace_back(destRect, uvRect, texture, depth, ColorRGBA);
+void SpriteBatch::draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA& color) {
+	glyphs.emplace_back(destRect, uvRect, texture, depth, color);
 }
 
 void SpriteBatch::sortGlyph() {

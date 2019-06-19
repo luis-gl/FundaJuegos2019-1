@@ -1,1 +1,4 @@
-﻿  PapuEngine.vcxproj -> C:\Users\Luis\Documents\GitHub\FundaJuegos2019-1\Proyectos\Debug\PapuEngine.exe
+﻿  PlayScreen.cpp
+c:\users\proyecto\documents\fundamentos201901\proyectos\papuengine\playscreen.cpp(96): warning C4101: 'buffer': variable local sin referencia
+  PapuEngine.vcxproj -> C:\Users\Proyecto\Documents\Fundamentos201901\Proyectos\Debug\PapuEngine.exe
+  PapuEngine.vcxproj -> C:\Users\Proyecto\Documents\Fundamentos201901\Proyectos\Debug\PapuEngine.pdb (Partial PDB)
