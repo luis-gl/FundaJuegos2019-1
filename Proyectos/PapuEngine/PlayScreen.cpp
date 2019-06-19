@@ -1,7 +1,8 @@
 #include "PlayScreen.h"
 #include "Game.h"
 #include "MyScreens.h"
-
+#include <random>
+#include <ctime>
 
 
 PlayScreen::PlayScreen(Window* window):_window(window)
@@ -47,8 +48,10 @@ void PlayScreen::onEntry() {
 	_spriteBatch.init();
 	
 	player = new Gamer(106, 79,
-		glm::vec2(200, 200), "Textures/Player.png", 
-		&_game->_inputManager);
+		glm::vec2(327, 20), "Textures/Player.png", 
+		&_game->_inputManager,
+		_window->getScreenWidth(),
+		_window->getScreenHeight());
 	initGUI();
 	
 }
@@ -58,6 +61,27 @@ void PlayScreen::onEntry() {
 void PlayScreen::update() {
 	_camera2D.update();
 	player->update();
+	for (size_t i = 0; i < enemies.size(); i++)
+	{
+		enemies[i]->update();
+		if (enemies[i]->getPosition().y >= _window->getScreenHeight())
+		{
+			enemies.erase(enemies.begin() + i);
+		}
+	}
+	std::mt19937 randomEngine(time(nullptr));
+	std::uniform_int_distribution<int>prob(0, 100);
+	std::uniform_int_distribution<int>ranPosition(0, _window->getScreenWidth());
+	int probability = prob(randomEngine);
+	if (probability >= 20 && probability < 40)
+	{
+		Enemy* enemy = new Enemy(64, 64,
+			glm::vec2(ranPosition(randomEngine), 300.0f),
+			"Textures/Nave.png",
+			_window->getScreenWidth(),
+			_window->getScreenHeight());
+		enemies.push_back(enemy);
+	}
 	checkInput();
 }
 
@@ -81,6 +105,10 @@ void PlayScreen::draw() {
 	glUniform1i(imageLocation, 0);
 	_spriteBatch.begin();;
 	player->draw(_spriteBatch);
+	for (size_t i = 0; i < enemies.size(); i++)
+	{
+		enemies[i]->draw(_spriteBatch);
+	}
 	_spriteBatch.end();
 	_spriteBatch.renderBatch();
 	drawHUD();

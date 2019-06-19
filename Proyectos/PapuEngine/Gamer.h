@@ -6,6 +6,8 @@ class Gamer : public Agent
 {
 private:
 	InputManager* inputManager;
+	float _screenWidth;
+	float _screenHeight;
 public:
 	Gamer(float agent_width,
 			float agent_height,
@@ -15,7 +17,9 @@ public:
 		float agent_height,
 		glm::vec2 position,
 		std::string texture,
-		InputManager* _inputManager);
+		InputManager* _inputManager,
+		float screenWidht,
+		float screenHeight);
 	void update();
 	void setPosition(glm::vec2 position) {
 		_position = position;

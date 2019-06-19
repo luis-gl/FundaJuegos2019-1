@@ -6,6 +6,10 @@
 #include "SpriteBatch.h"
 #include "GLTexture.h"
 #include "Gamer.h"
+#include "Enemy.h"
+#include <vector>
+
+using namespace std;
 
 class PlayScreen: public IGameScreen
 {
@@ -17,6 +21,7 @@ private:
 	SpriteBatch _spriteBatch;
 	SpriteBatch _hudBach;
 	Camera2D _hudCamera;
+	vector<Enemy*> enemies;
 	void drawHUD();
 public:
 	PlayScreen(Window* window);
