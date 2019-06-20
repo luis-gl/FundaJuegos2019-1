@@ -8,6 +8,8 @@
 #include "Gamer.h"
 #include "Enemy.h"
 #include <vector>
+#include <random>
+#include <ctime>
 
 using namespace std;
 
@@ -22,6 +24,11 @@ private:
 	SpriteBatch _hudBach;
 	Camera2D _hudCamera;
 	vector<Enemy*> enemies;
+	std::mt19937 randomEngine;
+	std::uniform_int_distribution<int>prob;
+	std::uniform_int_distribution<int>ranPosition;
+	Enemy* toDelete;
+	int probability;
 	void drawHUD();
 public:
 	PlayScreen(Window* window);

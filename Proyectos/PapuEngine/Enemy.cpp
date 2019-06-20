@@ -28,4 +28,5 @@ std::string Enemy::getTexture()
 
 Enemy::~Enemy()
 {
+	std::cout << "se elimino el enemigo" << std::endl;
 }

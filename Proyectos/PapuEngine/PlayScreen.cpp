@@ -1,8 +1,6 @@
 #include "PlayScreen.h"
 #include "Game.h"
 #include "MyScreens.h"
-#include <random>
-#include <ctime>
 
 
 PlayScreen::PlayScreen(Window* window):_window(window)
@@ -52,6 +50,11 @@ void PlayScreen::onEntry() {
 		&_game->_inputManager,
 		_window->getScreenWidth(),
 		_window->getScreenHeight());
+	randomEngine = std::mt19937(time(nullptr));
+	prob = std::uniform_int_distribution<int>(0, 100);
+	ranPosition = std::uniform_int_distribution<int>(0, _window->getScreenWidth());
+	toDelete = nullptr;
+	probability = 0;
 	initGUI();
 	
 }
@@ -64,16 +67,15 @@ void PlayScreen::update() {
 	for (size_t i = 0; i < enemies.size(); i++)
 	{
 		enemies[i]->update();
-		if (enemies[i]->getPosition().y >= _window->getScreenHeight())
+		if (enemies[i]->getPosition().y <= 0.0f)
 		{
+			toDelete = enemies[i];
 			enemies.erase(enemies.begin() + i);
+			delete toDelete;
 		}
 	}
-	std::mt19937 randomEngine(time(nullptr));
-	std::uniform_int_distribution<int>prob(0, 100);
-	std::uniform_int_distribution<int>ranPosition(0, _window->getScreenWidth());
-	int probability = prob(randomEngine);
-	if (probability >= 20 && probability < 40)
+	probability = prob(randomEngine);
+	if (probability == 20)
 	{
 		Enemy* enemy = new Enemy(64, 64,
 			glm::vec2(ranPosition(randomEngine), 300.0f),
