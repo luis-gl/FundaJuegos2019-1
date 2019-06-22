@@ -73,16 +73,23 @@ void PlayScreen::update() {
 			enemies.erase(enemies.begin() + i);
 			delete toDelete;
 		}
+		else if (enemies[i]->collideWithAgent(player))
+		{
+			toDelete = enemies[i];
+			enemies.erase(enemies.begin() + i);
+			delete toDelete;
+		}
 	}
-	probability = prob(randomEngine);
-	if (probability == 20)
+	probability++;
+	if (probability == 100)
 	{
-		Enemy* enemy = new Enemy(64, 64,
-			glm::vec2(ranPosition(randomEngine), 300.0f),
+		Enemy* enemy = new Enemy(80, 80,
+			glm::vec2(ranPosition(randomEngine), _window->getScreenHeight() - 80),
 			"Textures/Nave.png",
 			_window->getScreenWidth(),
 			_window->getScreenHeight());
 		enemies.push_back(enemy);
+		probability = 0;
 	}
 	checkInput();
 }

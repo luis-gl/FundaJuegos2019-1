@@ -73,7 +73,7 @@ public:
 
 	/// Draws using a spritebatch
 	void draw(SpriteBatch& batch, const char* s, glm::vec2 position, glm::vec2 scaling,
-		float depth, ColorRGBA tint, Justification just = Justification::LEFT);
+		float depth, ColorRGBA tint, Justification just = Justification::MIDDLE);
 private:
 	static std::vector<int>* createRows(glm::ivec4* rects, int rectsLength, int r, int padding, int& w);
 

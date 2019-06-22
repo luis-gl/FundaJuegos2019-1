@@ -15,6 +15,8 @@ private:
 	int textureID;
 	bool clicked;
 	glm::vec2 position;
+	float width;
+	float height;
 public:
 	void setClicked(bool _clicked) {
 		clicked = _clicked;
@@ -22,13 +24,19 @@ public:
 	bool getClicked()const {
 		return clicked;
 	}
-	Button(string _texture);
+	Button(string _texture, glm::vec2 _position, float _width, float _height);
 	void draw(SpriteBatch& spriteBatch);
 	void setColor(ColorRGBA _color);
 	ColorRGBA getColor() const {
 		return color;
 	}
-	bool click(glm::vec2 _position);
+	float getWidth() {
+		return width;
+	}
+	float getHeight() {
+		return height;
+	}
+	bool click(glm::vec2 _position, glm::vec2 windowSize);
 	~Button();
 };
 

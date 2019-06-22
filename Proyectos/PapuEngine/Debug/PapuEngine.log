@@ -1,8 +1,48 @@
-﻿  PlayScreen.cpp
+﻿  Agent.cpp
+  App.cpp
+  Background.cpp
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\background.cpp(2): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+  Button.cpp
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\button.cpp(2): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+  Camera2D.cpp
+  EndScreen.cpp
+  Enemy.cpp
+  Error.cpp
+  Game.cpp
+  Gamer.cpp
+  GLS_Program.cpp
+  ImageLoader.cpp
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\imageloader.cpp(36): warning C4244: '=': conversión de 'unsigned long' a 'float'; posible pérdida de datos
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\imageloader.cpp(37): warning C4244: '=': conversión de 'unsigned long' a 'float'; posible pérdida de datos
+  InputManager.cpp
+  IOManager.cpp
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\iomanager.cpp(15): warning C4244: 'inicializando': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\iomanager.cpp(18): warning C4244: '-=': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
+  main.cpp
+  MenuScreen.cpp
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\menuscreen.cpp(14): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  PapuEngine.cpp
+  picoPNG.cpp
+  PlayScreen.cpp
 c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(52): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
 c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(51): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
 c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(53): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(84): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(83): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(126): warning C4101: 'buffer': variable local sin referencia
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(90): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(89): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(133): warning C4101: 'buffer': variable local sin referencia
+  ResourceManager.cpp
+  Generando código...
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\camera2d.cpp(38): warning C4715: 'Camera2D::isBoxInView': no todas las rutas de acceso de control devuelven un valor
+  Compilando...
+  ScreenList.cpp
+  Sprite.cpp
+  SpriteBatch.cpp
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\spritebatch.cpp(45): warning C4018: '<': no coinciden signed/unsigned
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\spritebatch.cpp(73): warning C4018: '<': no coinciden signed/unsigned
+  SpriteFont.cpp
+  TextureCache.cpp
+  Timing.cpp
+c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\timing.cpp(22): warning C4244: 'argumento': conversión de 'float' a 'Uint32'; posible pérdida de datos
+  Window.cpp
+  Generando código...
   PapuEngine.vcxproj -> C:\Users\Luis\Documents\GitHub\FundaJuegos2019-1\Proyectos\Debug\PapuEngine.exe

@@ -16,7 +16,7 @@ Enemy::Enemy(float agent_width,
 
 void Enemy::update()
 {
-	_position.y -= 8.0f;
+	_position.y -= 6.0f;
 	std::cout << _position.y << std::endl;
 }
 

@@ -26,13 +26,21 @@ Gamer::Gamer(float agent_width,
 }
 
 void Gamer::update() {
-	/*if (inputManager->isKeyDown(SDLK_w)) {
+	if (inputManager->isKeyDown(SDLK_w)) {
 		_position.y += 8.0f;
+		if (_position.y >= _screenHeight - _agent_radius)
+		{
+			_position.y = 0.0f - _agent_radius;
+		}
 	}
 
 	if (inputManager->isKeyDown(SDLK_s)) {
 		_position.y -= 8.0f;
-	}*/
+		if (_position.y <= 0.0f)
+		{
+			_position.y = _screenHeight - _agent_radius;
+		}
+	}
 
 	if (inputManager->isKeyDown(SDLK_a)) {
 		_position.x -= 8.0f;

@@ -2,8 +2,8 @@
 #include "ResourceManager.h";
 
 
-Background::Background(std::string _texture)
-			:texture(_texture)
+Background::Background(std::string _texture, float _width, float _height)
+			:texture(_texture), width(_width), height(_height)
 {
 	textureID 
 		= ResourceManager::getTexture(texture).id;
@@ -12,7 +12,7 @@ Background::Background(std::string _texture)
 
 void Background::draw(SpriteBatch& spriteBatch) {
 	const glm::vec4 uvRect(0.0f, 0.0f, 1.0f, 1.0f);
-	glm::vec4 desctRect(0, 0, 800, 600);
+	glm::vec4 desctRect(0, 0, width, height);
 	spriteBatch.draw(desctRect, uvRect, textureID, 0.0f, color);
 }
 

@@ -10,9 +10,11 @@ MenuScreen::MenuScreen(Window* window):
 }
 
 void MenuScreen::initGUI() {
-	_spriteFont = new SpriteFont("Fonts/arial.ttf", 64);
-	background = new Background("Textures/menu.png");
-	button = new Button("Textures/menu_button.png");
+	_spriteFont = new SpriteFont("Fonts/PressStart2P.ttf", 64);
+	background = new Background("Textures/menu.png", _window->getScreenWidth(),_window->getScreenHeight());
+	button = new Button("Textures/menu_button.png",
+		glm::vec2(_window->getScreenWidth() / 2.0f, _window->getScreenHeight() / 2.0f),
+		190,50);
 }
 
 void MenuScreen::initSystem() {
@@ -48,7 +50,8 @@ void MenuScreen::update() {
 	if (_game->_inputManager.isKeyDown(SDL_BUTTON_LEFT)) {
 		if (
 			!button->getClicked() &&
-				button->click(_game->_inputManager.getMouseCoords())
+				button->click(_game->_inputManager.getMouseCoords(),
+					glm::vec2(_window->getScreenWidth(),_window->getScreenHeight()))
 			) {
 			button->setClicked(true);
 			std::cout << "clik" << std::endl;
@@ -80,10 +83,10 @@ void MenuScreen::draw() {
 	_spriteBatch.begin();
 	background->draw(_spriteBatch);
 	button->draw(_spriteBatch);
-	sprintf(buffer, " ARREGLANDO EL BUG");
+	sprintf(buffer, "GAME TITLE HERE :)");
 	_spriteFont->draw(_spriteBatch, buffer,
-		glm::vec2(250, 100), glm::vec2(0.5), 0.0f,
-		ColorRGBA(255, 255, 255, 255));
+		glm::vec2(_window->getScreenWidth()/2.0f, _window->getScreenHeight()*0.75), glm::vec2(0.5), 0.0f,
+		ColorRGBA(255, 255, 255, 255), Justification::MIDDLE);
 	_spriteBatch.end();
 	_spriteBatch.renderBatch();
 
