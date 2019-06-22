@@ -15,6 +15,7 @@ void MenuScreen::initGUI() {
 	button = new Button("Textures/menu_button.png",
 		glm::vec2(_window->getScreenWidth() / 2.0f, _window->getScreenHeight() / 2.0f),
 		190,50);
+	audioPlayer = new AudioPlayer();
 }
 
 void MenuScreen::initSystem() {
@@ -30,6 +31,7 @@ void MenuScreen::destroy() {
 	delete background;
 	delete button;
 	delete _spriteFont;
+	delete audioPlayer;
 }
 
 void MenuScreen::onExit() {}
@@ -43,6 +45,7 @@ void MenuScreen::onEntry() {
 		_window->getScreenHeight() / 2.0f));
 	_spriteBatch.init();
 	initGUI();
+	audioPlayer->AddAndPlay("Audio/Avenza - Game On (Original Mix).ogg", true);
 }
 
 void MenuScreen::update() {

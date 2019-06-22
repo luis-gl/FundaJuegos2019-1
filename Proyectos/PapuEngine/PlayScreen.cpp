@@ -19,6 +19,7 @@ void PlayScreen::initGUI() {
 	_hudCamera.setPosition(glm::vec2(
 		_window->getScreenWidth() / 2.0f,
 		_window->getScreenHeight() / 2.0f));
+	audioPlayer = new AudioPlayer();
 }
 
 void PlayScreen::initSystem() {
@@ -50,13 +51,13 @@ void PlayScreen::onEntry() {
 		&_game->_inputManager,
 		_window->getScreenWidth(),
 		_window->getScreenHeight());
-	randomEngine = std::mt19937(time(nullptr));
-	prob = std::uniform_int_distribution<int>(0, 100);
-	ranPosition = std::uniform_int_distribution<int>(0, _window->getScreenWidth());
+	randomEngine = mt19937(time(nullptr));
+	prob = uniform_int_distribution<int>(0, 100);
+	ranPosition = uniform_int_distribution<int>(0, _window->getScreenWidth());
 	toDelete = nullptr;
 	probability = 0;
 	initGUI();
-	
+	audioPlayer->AddAndPlay("Audio/breakout.ogg", true);
 }
 
 

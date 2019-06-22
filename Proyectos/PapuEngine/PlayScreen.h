@@ -7,6 +7,7 @@
 #include "GLTexture.h"
 #include "Gamer.h"
 #include "Enemy.h"
+#include "AudioPlayer.h"
 #include <vector>
 #include <random>
 #include <ctime>
@@ -23,10 +24,11 @@ private:
 	SpriteBatch _spriteBatch;
 	SpriteBatch _hudBach;
 	Camera2D _hudCamera;
+	AudioPlayer* audioPlayer = nullptr;
 	vector<Enemy*> enemies;
-	std::mt19937 randomEngine;
-	std::uniform_int_distribution<int>prob;
-	std::uniform_int_distribution<int>ranPosition;
+	mt19937 randomEngine;
+	uniform_int_distribution<int>prob;
+	uniform_int_distribution<int>ranPosition;
 	Enemy* toDelete;
 	int probability;
 	void drawHUD();

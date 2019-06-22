@@ -7,6 +7,7 @@
 #include "Camera2D.h"
 #include "SpriteBatch.h"
 #include "Button.h"
+#include "AudioPlayer.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ private:
 	Background* background = nullptr;
 	Button* button = nullptr;
 	Window* _window = nullptr;
+	AudioPlayer* audioPlayer = nullptr;
 	bool btnGameClicked;
 	GLS_Program _program;
 	SpriteBatch _spriteBatch;
