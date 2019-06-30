@@ -7,6 +7,7 @@
 #include "GLTexture.h"
 #include "Gamer.h"
 #include "Enemy.h"
+#include "Background.h"
 #include "AudioPlayer.h"
 #include <vector>
 #include <random>
@@ -23,14 +24,14 @@ private:
 	Window* _window = nullptr;
 	SpriteBatch _spriteBatch;
 	SpriteBatch _hudBach;
+	Background* background;
 	Camera2D _hudCamera;
 	AudioPlayer* audioPlayer = nullptr;
 	vector<Enemy*> enemies;
 	mt19937 randomEngine;
 	uniform_int_distribution<int>prob;
 	uniform_int_distribution<int>ranPosition;
-	Enemy* toDelete;
-	int probability;
+	int countToSpawn;
 	void drawHUD();
 public:
 	PlayScreen(Window* window);

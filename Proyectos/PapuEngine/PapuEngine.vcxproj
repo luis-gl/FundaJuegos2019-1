@@ -123,6 +123,7 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera2D.cpp" />
     <ClCompile Include="EndScreen.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="AudioPlayer.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Camera2D.h" />
     <ClInclude Include="EndScreen.h" />

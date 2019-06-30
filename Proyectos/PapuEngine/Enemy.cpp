@@ -1,5 +1,4 @@
 #include "Enemy.h"
-#include <iostream>
 
 
 Enemy::Enemy(float agent_width,
@@ -10,14 +9,13 @@ Enemy::Enemy(float agent_width,
 	float _screenHeight)
 	:Agent(agent_width, agent_height, position, texture)
 {
-	_screenWidth = screenWidht;
-	_screenHeight = screenHeight;
+	screenWidht = _screenWidth;
+	screenHeight = _screenHeight;
 }
 
 void Enemy::update()
 {
 	_position.y -= 6.0f;
-	std::cout << _position.y << std::endl;
 }
 
 
@@ -28,5 +26,4 @@ std::string Enemy::getTexture()
 
 Enemy::~Enemy()
 {
-	std::cout << "se elimino el enemigo" << std::endl;
 }

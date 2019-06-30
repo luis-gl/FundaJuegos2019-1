@@ -1,8 +1,2 @@
-﻿  PlayScreen.cpp
-c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(53): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(52): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(54): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(91): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(90): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-c:\users\luis\documents\github\fundajuegos2019-1\proyectos\papuengine\playscreen.cpp(134): warning C4101: 'buffer': variable local sin referencia
+﻿  Bullet.cpp
   PapuEngine.vcxproj -> C:\Users\Luis\Documents\GitHub\FundaJuegos2019-1\Proyectos\Debug\PapuEngine.exe

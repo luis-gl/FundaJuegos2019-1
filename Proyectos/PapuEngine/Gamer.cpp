@@ -57,10 +57,37 @@ void Gamer::update() {
 			_position.x = 0.0f - _agent_radius;
 		}
 	}
+
+	if (inputManager->isKeyDown(SDLK_SPACE)) {
+		if (bullets.size() <= 20)
+		{
+			Bullet* bullet = new Bullet(30, 30, _position, "Textures/laser.png", _screenWidth, _screenHeight);
+			bullets.push_back(bullet);
+		}
+	}
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		bullets[i]->update();
+		if (bullets[i]->getPosition().y > _screenHeight)
+		{
+			Bullet* toDel = nullptr;
+			toDel = bullets[i];
+			bullets.erase(bullets.begin() + i);
+			delete toDel;
+		}
+	}
 }
 
 std::string Gamer::getTexture() {
 	return _texturePath;
+}
+
+void Gamer::drawBullets(SpriteBatch& _spriteBatch)
+{
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		bullets[i]->draw(_spriteBatch);
+	}
 }
 
 

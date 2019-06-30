@@ -20,6 +20,8 @@ void PlayScreen::initGUI() {
 		_window->getScreenWidth() / 2.0f,
 		_window->getScreenHeight() / 2.0f));
 	audioPlayer = new AudioPlayer();
+	audioPlayer->AddAndPlay("Audio/breakout.ogg", true);
+	background = new Background("Textures/game.png", _window->getScreenWidth(), _window->getScreenHeight());
 }
 
 void PlayScreen::initSystem() {
@@ -32,7 +34,8 @@ void PlayScreen::initSystem() {
 }
 
 void PlayScreen::destroy() {
-	
+	delete background;
+	delete audioPlayer;
 }
 
 void PlayScreen::onExit() {}
@@ -54,10 +57,8 @@ void PlayScreen::onEntry() {
 	randomEngine = mt19937(time(nullptr));
 	prob = uniform_int_distribution<int>(0, 100);
 	ranPosition = uniform_int_distribution<int>(0, _window->getScreenWidth());
-	toDelete = nullptr;
-	probability = 0;
+	countToSpawn = 0;
 	initGUI();
-	audioPlayer->AddAndPlay("Audio/breakout.ogg", true);
 }
 
 
@@ -70,19 +71,21 @@ void PlayScreen::update() {
 		enemies[i]->update();
 		if (enemies[i]->getPosition().y <= 0.0f)
 		{
+			Enemy* toDelete = nullptr;
 			toDelete = enemies[i];
 			enemies.erase(enemies.begin() + i);
 			delete toDelete;
 		}
 		else if (enemies[i]->collideWithAgent(player))
 		{
+			Enemy* toDelete = nullptr;
 			toDelete = enemies[i];
 			enemies.erase(enemies.begin() + i);
 			delete toDelete;
 		}
 	}
-	probability++;
-	if (probability == 100)
+	countToSpawn++;
+	if (countToSpawn == 100)
 	{
 		Enemy* enemy = new Enemy(80, 80,
 			glm::vec2(ranPosition(randomEngine), _window->getScreenHeight() - 80),
@@ -90,7 +93,7 @@ void PlayScreen::update() {
 			_window->getScreenWidth(),
 			_window->getScreenHeight());
 		enemies.push_back(enemy);
-		probability = 0;
+		countToSpawn = 0;
 	}
 	checkInput();
 }
@@ -113,8 +116,10 @@ void PlayScreen::draw() {
 
 	GLuint imageLocation = _program.getUniformLocation("myImage");
 	glUniform1i(imageLocation, 0);
-	_spriteBatch.begin();;
+	_spriteBatch.begin();
+	background->draw(_spriteBatch);
 	player->draw(_spriteBatch);
+	player->drawBullets(_spriteBatch);
 	for (size_t i = 0; i < enemies.size(); i++)
 	{
 		enemies[i]->draw(_spriteBatch);
