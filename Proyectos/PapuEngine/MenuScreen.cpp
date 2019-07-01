@@ -4,7 +4,7 @@
 #include <iostream>
 
 MenuScreen::MenuScreen(Window* window):
-	_window(window), btnGameClicked(false)
+	_window(window)
 {
 	_screenIndex = SCREEN_INDEX_MENU;
 }
@@ -16,6 +16,8 @@ void MenuScreen::initGUI() {
 		glm::vec2(_window->getScreenWidth() / 2.0f, _window->getScreenHeight() / 2.0f),
 		190,50);
 	audioPlayer = new AudioPlayer();
+	audioPlayer->addToTrack("Audio/menu.ogg");
+	audioPlayer->playBackgroundSong();
 }
 
 void MenuScreen::initSystem() {
@@ -45,7 +47,6 @@ void MenuScreen::onEntry() {
 		_window->getScreenHeight() / 2.0f));
 	_spriteBatch.init();
 	initGUI();
-	audioPlayer->AddAndPlay("Audio/Avenza - Game On (Original Mix).ogg", true);
 }
 
 void MenuScreen::update() {

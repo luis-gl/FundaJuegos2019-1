@@ -8,14 +8,12 @@ using namespace irrklang;
 class AudioPlayer
 {
 	ISoundEngine* audioPlayer;
-	std::vector<ISound*> sounds;
+	std::vector<ISoundSource*> sounds;
 public:
 	AudioPlayer();
-	void AddAndPlay(const char* _musicPath, bool _looped);
-	void pausePlayBackgroundSong();
-	void pausePlaySong(int pos);
-	void pauseAllSongs();
-	void continueAllSongs();
+	void addToTrack(const char* _musicPath);
+	void playBackgroundSong();
+	void playSong(int pos);
 	~AudioPlayer();
 };
 

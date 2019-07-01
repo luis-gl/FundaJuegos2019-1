@@ -18,7 +18,6 @@ private:
 	Button* button = nullptr;
 	Window* _window = nullptr;
 	AudioPlayer* audioPlayer = nullptr;
-	bool btnGameClicked;
 	GLS_Program _program;
 	SpriteBatch _spriteBatch;
 	SpriteFont* _spriteFont;

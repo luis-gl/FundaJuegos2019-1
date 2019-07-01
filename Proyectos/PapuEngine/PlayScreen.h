@@ -4,6 +4,7 @@
 #include "GLS_Program.h"
 #include "Window.h"
 #include "SpriteBatch.h"
+#include "SpriteFont.h"
 #include "GLTexture.h"
 #include "Gamer.h"
 #include "Enemy.h"
@@ -24,6 +25,7 @@ private:
 	Window* _window = nullptr;
 	SpriteBatch _spriteBatch;
 	SpriteBatch _hudBach;
+	SpriteFont* spriteFont;
 	Background* background;
 	Camera2D _hudCamera;
 	AudioPlayer* audioPlayer = nullptr;
@@ -32,6 +34,10 @@ private:
 	uniform_int_distribution<int>prob;
 	uniform_int_distribution<int>ranPosition;
 	int countToSpawn;
+	int playerLifes;
+	int score;
+	int countToDie;
+	bool startCTD;
 	void drawHUD();
 public:
 	PlayScreen(Window* window);

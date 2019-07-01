@@ -37,6 +37,11 @@ public:
 		return height;
 	}
 	bool click(glm::vec2 _position, glm::vec2 windowSize);
+
+	glm::vec2 getPosition()
+	{
+		return position;
+	}
 	~Button();
 };
 

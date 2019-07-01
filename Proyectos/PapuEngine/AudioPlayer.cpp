@@ -6,39 +6,20 @@ AudioPlayer::AudioPlayer()
 	audioPlayer = createIrrKlangDevice();
 }
 
-void AudioPlayer::AddAndPlay(const char* _musicPath, bool _looped = false)
+void AudioPlayer::addToTrack(const char * _musicPath)
 {
-	ISound* sound = audioPlayer->play2D(_musicPath, _looped, false, true, ESM_AUTO_DETECT, true);
-	sounds.push_back(sound);
+	ISoundSource* newSound = audioPlayer->addSoundSourceFromFile(_musicPath);
+	sounds.push_back(newSound);
 }
 
-void AudioPlayer::pausePlayBackgroundSong()
+void AudioPlayer::playBackgroundSong()
 {
-	sounds[0]->setIsPaused(!sounds[0]->getIsPaused());
+	audioPlayer->play2D(sounds[0], true);
 }
 
-void AudioPlayer::pausePlaySong(int pos)
+void AudioPlayer::playSong(int pos)
 {
-	sounds[pos]->setIsPaused(!sounds[pos]->getIsPaused());
-}
-
-void AudioPlayer::pauseAllSongs()
-{
-	if (sounds.size() > 1) {
-		for (size_t i = 1; i < sounds.size(); i++) {
-			sounds[i]->setIsPaused(true);
-		}
-	}
-	
-}
-
-void AudioPlayer::continueAllSongs()
-{
-	if (sounds.size() > 1) {
-		for (size_t i = 1; i < sounds.size(); i++) {
-			sounds[i]->setIsPaused(false);
-		}
-	}
+	audioPlayer->play2D(sounds[pos]);
 }
 
 AudioPlayer::~AudioPlayer()

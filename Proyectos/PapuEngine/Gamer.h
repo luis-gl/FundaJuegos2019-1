@@ -1,7 +1,7 @@
 #pragma once
 #include "Agent.h"
 #include "InputManager.h"
-#include "Bullet.h"
+#include "AudioPlayer.h"
 #include <vector>
 
 class Gamer : public Agent
@@ -10,7 +10,6 @@ private:
 	InputManager* inputManager;
 	float _screenWidth;
 	float _screenHeight;
-	std::vector<Bullet*> bullets;
 public:
 	Gamer(float agent_width,
 			float agent_height,
@@ -31,7 +30,6 @@ public:
 		_texturePath = texturePath;
 	}
 	std::string getTexture();
-	void drawBullets(SpriteBatch& _spriteBatch);
 	~Gamer();
 };
 

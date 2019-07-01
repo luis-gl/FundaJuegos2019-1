@@ -19,9 +19,17 @@ void PlayScreen::initGUI() {
 	_hudCamera.setPosition(glm::vec2(
 		_window->getScreenWidth() / 2.0f,
 		_window->getScreenHeight() / 2.0f));
-	audioPlayer = new AudioPlayer();
-	audioPlayer->AddAndPlay("Audio/breakout.ogg", true);
+	spriteFont = new SpriteFont("Fonts/arial.ttf", 64);
 	background = new Background("Textures/game.png", _window->getScreenWidth(), _window->getScreenHeight());
+	audioPlayer = new AudioPlayer();
+	audioPlayer->addToTrack("Audio/game.ogg");		//0 para el backgroundMusic
+	audioPlayer->addToTrack("Audio/loseLife.ogg");	//1 para perder vida
+	audioPlayer->addToTrack("Audio/dead.ogg");		//2 para morir
+	audioPlayer->playBackgroundSong();
+	playerLifes = 3;
+	score = 0;
+	countToDie = 0;
+	startCTD = false;
 }
 
 void PlayScreen::initSystem() {
@@ -36,6 +44,7 @@ void PlayScreen::initSystem() {
 void PlayScreen::destroy() {
 	delete background;
 	delete audioPlayer;
+	delete spriteFont;
 }
 
 void PlayScreen::onExit() {}
@@ -48,7 +57,6 @@ void PlayScreen::onEntry() {
 		_window->getScreenWidth() / 2.0f,
 		_window->getScreenHeight() / 2.0f));
 	_spriteBatch.init();
-	
 	player = new Gamer(106, 79,
 		glm::vec2(327, 20), "Textures/Player.png", 
 		&_game->_inputManager,
@@ -75,17 +83,32 @@ void PlayScreen::update() {
 			toDelete = enemies[i];
 			enemies.erase(enemies.begin() + i);
 			delete toDelete;
+			score += 10;
 		}
 		else if (enemies[i]->collideWithAgent(player))
 		{
+			if (playerLifes > 0) {
+				audioPlayer->playSong(1);
+				playerLifes--;
+			}
+			else {
+				audioPlayer->playSong(2);
+				startCTD = true;
+			}
 			Enemy* toDelete = nullptr;
 			toDelete = enemies[i];
 			enemies.erase(enemies.begin() + i);
 			delete toDelete;
 		}
 	}
+	if (startCTD) {
+		countToDie++;
+		if (countToDie > 30) {
+			_currentState = ScreenState::CHANGE_NEXT;
+		}
+	}
 	countToSpawn++;
-	if (countToSpawn == 100)
+	if (countToSpawn == 10)
 	{
 		Enemy* enemy = new Enemy(80, 80,
 			glm::vec2(ranPosition(randomEngine), _window->getScreenHeight() - 80),
@@ -119,7 +142,6 @@ void PlayScreen::draw() {
 	_spriteBatch.begin();
 	background->draw(_spriteBatch);
 	player->draw(_spriteBatch);
-	player->drawBullets(_spriteBatch);
 	for (size_t i = 0; i < enemies.size(); i++)
 	{
 		enemies[i]->draw(_spriteBatch);
@@ -138,7 +160,14 @@ void PlayScreen::drawHUD() {
 
 	char buffer[256];
 	_hudBach.begin();
-
+	sprintf(buffer, "Lifes: %d", playerLifes);
+	spriteFont->draw(_hudBach, buffer,
+		glm::vec2(_window->getScreenWidth()*0.15, _window->getScreenHeight()*0.05), glm::vec2(0.5), 0.0f,
+		ColorRGBA(255, 255, 255, 255), Justification::MIDDLE);
+	sprintf(buffer, "Score: %d", score);
+	spriteFont->draw(_hudBach, buffer,
+		glm::vec2(_window->getScreenWidth()*0.30, _window->getScreenHeight()*0.05), glm::vec2(0.5), 0.0f,
+		ColorRGBA(255, 255, 255, 255), Justification::MIDDLE);
 	_hudBach.end();
 	_hudBach.renderBatch();
 }
